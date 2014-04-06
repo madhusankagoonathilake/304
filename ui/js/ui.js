@@ -2,11 +2,11 @@ var ws;
 
 var config = {
     url: "ws://localhost:3000/",
-    playerName: "Saman",
+    playerName: null,
     playerId: null
 };
 
-function init() {
+function initConnection() {
 
     if ("WebSocket" in window) {
         console.log("[INFO] WebSocket is supported by your browser.");
@@ -24,7 +24,7 @@ function init() {
         ws.onmessage = function(e) {
             var message = JSON.parse(e.data);
             if (message.type === "ctrl") {
-                // Handle action
+                hadle(message.content.action, message.content.params);
             } else if (message.type === "info") {
                 console.log("[INFO] " + message.content);
             }
@@ -39,3 +39,8 @@ function init() {
 
 }
 
+function handle(action, param) {
+    if (action === "set-player-id") {
+        config.playerId = param;
+    }
+}

@@ -1,17 +1,125 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>304</title>
+        <title>304 The Game</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/ui.css" />
     </head>
     <body>
-        <h1>304 The Game</h1>
+        <div class="container">
+            <h1>304 The Game</h1>
+        </div>
+
+        <div class="container" id="display">
+
+            <div class="col-sm-2 col-md-offset-3">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+            <div class="col-sm-2 col-md-offset-2">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+            <div class="col-sm-2 col-md-offset-2">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+            <div class="col-sm-2 col-md-offset-1">
+                <div class="alert alert-success" id="playingTable"></div>
+            </div>
+            <div class="col-sm-2 col-md-offset-1">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+            <div class="col-sm-2 col-md-offset-3">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+            <div class="col-sm-2 col-md-offset-2">
+                <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive" />
+                <h4>[Vacant]</h4>
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="connectionModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Connect to the Game</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="post" role="form" class="form-horizontal" id="connectionForm">
+                            <div class="container-fluid form-group">
+                                <label for="player">Name</label>
+                                <input type="text" id="player" placeholder="Enter your name here" class="form-control" />
+                            </div>
+                            <div class="container-fluid form-group">
+                                <label for="player" class="control-label">Avatar</label>
+                                <input type="hidden" id="avatar" />
+                                <br />
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/female-face01.png" alt="avatar" />
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/male-face01.png" alt="avatar" />
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/female-face02.png" alt="avatar" />
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/male-face02.png" alt="avatar" />
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/female-face03.png" alt="avatar" />
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-avatar">
+                                        <img src="images/male-face03.png" alt="avatar" />
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="connect">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/ui.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                init();
+                $('#connectionModal').modal('show');
+                $('#connect').on('click', function() {
+                    handleConnection();
+                });
+                $('#connectionForm').on('submit', function(event) {
+                    event.preventDefault();
+                    handleConnection();
+                });
+                $('.btn-avatar').on('click', function() {
+                    $('#avatar').val($(this).children('img:first').attr('src'));
+                    $('.btn-avatar').css('background-color', 'trasparent');
+                    $(this).css('background-color', 'lightblue');
+                });
             });
+
+            function handleConnection() {
+                var playerName = $.trim($('#player').val());
+                if (playerName === '') {
+                    $('#player').addClass('has-error');
+                } else {
+                    config.playerName = playerName;
+                    initConnection();
+                    $('#connectionModal').modal('hide');
+                }
+            }
         </script>
     </body>
 </html>

@@ -1,0 +1,19 @@
+body {
+    padding-top: 10px;
+}
+
+button img {
+    max-width: 60px;
+}
+
+#display img {
+    background-color: lightgray;
+}
+
+#display div {
+    text-align: center;
+}
+
+#playingTable {
+    min-height: 160px;
+}
