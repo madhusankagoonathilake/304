@@ -22,22 +22,34 @@ var mediator = {
                 if (message.type === 'utf8') {
                     var data = JSON.parse(message.utf8Data);
                     var playerId = Math.ceil(Math.random() * 100000);
-                    var player = new tnfPlayer(playerId, data.player.name, connection);
+                    var player = new tnfPlayer(playerId, data.player.name, data.player.avatar, connection);
 
                     // Logging the server activity
-                    console.log("Player connected: " + player.toString());
+                    console.log('Player connected: ' + player.toString());
 
                     // Add player to the game
                     mediator.players.push(player);
 
                     // Issue player ID
-                    mediator.unicast(player, new tnfMessage("ctrl", {
-                        action: "set-player-id",
+                    mediator.unicast(player, new tnfMessage('ctrl', {
+                        action: 'set-player-id',
                         params: player.id
                     }));
 
                     // Notify the connected players
-                    mediator.broadcast(new tnfMessage("info", "Player connected: " + player));
+                    var playerList = [];
+                    for (i in mediator.players) {
+                        playerList.push({
+                            name: mediator.players[i].name,
+                            avatar: mediator.players[i].avatar
+                        });
+                    }
+                    
+                    mediator.broadcast(new tnfMessage('info', 'Player connected: ' + player));
+                    mediator.broadcast(new tnfMessage('ctrl', {
+                       action: 'add-players',
+                       params: playerList
+                    }));
                 }
             });
 
@@ -59,12 +71,13 @@ var mediator = {
 mediator.run();
 
 // Type defs
-function tnfPlayer(id, name, connection) {
+function tnfPlayer(id, name, avatar, connection) {
     this.id = id;
     this.name = name;
+    this.avatar = avatar;
     this.connection = connection;
     this.toString = function() {
-        return this.name + " [" + this.id + "]";
+        return this.name + ' [' + this.id + ']';
     }
 }
 
