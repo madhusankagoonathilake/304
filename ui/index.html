@@ -8,35 +8,35 @@
     </head>
     <body>
         <div class="container">
-            <h1>304 The Game</h1>
+            <h1>The Game</h1>
         </div>
 
         <div class="container" id="display">
 
-            <div class="col-sm-2 col-md-offset-3">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
-            <div class="col-sm-2 col-md-offset-2">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
-            <div class="col-sm-2 col-md-offset-2">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
-            <div class="col-sm-2 col-md-offset-1">
-                <div class="alert alert-success" id="playingTable"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                <div class="" id="playingTable"></div>
             </div>
-            <div class="col-sm-2 col-md-offset-1">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
-            <div class="col-sm-2 col-md-offset-3">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
-            <div class="col-sm-2 col-md-offset-2">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                 <img src="images/default-face.png" alt="avatar" class="img-circle img-responsive img-placeholder" />
                 <h4>[Vacant]</h4>
             </div>
@@ -105,8 +105,8 @@
                 });
                 $('.btn-avatar').on('click', function() {
                     $('#avatar').val($(this).children('img:first').attr('src'));
-                    $('.btn-avatar').css('background-color', 'trasparent');
-                    $(this).css('background-color', 'lightblue');
+                    $('.btn-avatar').removeClass('active');
+                    $(this).addClass('active');
                 });
             });
 

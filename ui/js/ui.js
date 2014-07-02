@@ -51,6 +51,7 @@ function handle(action, param) {
         for (i in param) {
             $(placeholders.get(i)).next().html(param[i].name);
             $(placeholders.get(i)).attr('src', param[i].avatar);
+            $(placeholders.get(i)).css('background-color', colors[i]);
         }
     }
 }
